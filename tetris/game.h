@@ -8,6 +8,8 @@
 #define SCREEN_WIDTH 860
 #define SCREEN_HEIGHT 860
 
+#define DRAW_GRID false
+
 #define KEY_DELAY .072
 #define ROWS 20
 #define COLUMNS 10
@@ -18,6 +20,7 @@
 #define TINY_CELL 30
 #define ALT_CELL CELL_WIDTH
 #define TIME_TO_FALL 0.5
+#define MIN_TIME_TO_FALL .03
 
 #define RUNNING_STATE 0
 #define GAME_OVER_STATE 1

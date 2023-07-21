@@ -52,6 +52,7 @@ void RenderRunningState(const game_t *game){
     }
 
     //render grid
+#if DRAW_GRID
     for(int i = 1; i <= COLUMNS; i++){
         DrawLine(i * CELL_WIDTH, 0, i*CELL_WIDTH, GAME_SCREEN_HEIGHT, BLACK);
     }
@@ -59,7 +60,11 @@ void RenderRunningState(const game_t *game){
     for(int i = 1; i <= ROWS; i++){
         DrawLine(0, i * CELL_HEIGHT, GAME_SCREEN_WIDTH, i*CELL_HEIGHT, BLACK);
     }
+#else
 
+DrawLine(COLUMNS * CELL_WIDTH, 0, COLUMNS*CELL_WIDTH, GAME_SCREEN_HEIGHT, BLACK);
+
+#endif
     // render RenderMiniPieces
     if(game->alt_init == true){
         for(int col = 0; col < 4; col++){

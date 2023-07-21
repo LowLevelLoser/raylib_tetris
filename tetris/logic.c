@@ -307,8 +307,8 @@ void ClearFullLines(game_t *game){
     }
 
     ClearFullLines(game);
-    if (timeToFall > .025){
-        timeToFall = TIME_TO_FALL - game->line_cleared / 200.0;
+    if (timeToFall > MIN_TIME_TO_FALL){
+        timeToFall = TIME_TO_FALL - game->line_cleared / 300.0;
     }
 }
 
