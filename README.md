@@ -8,6 +8,8 @@ space to drop
 
 escape to pause
 
-and r to restart
+r to restart
+
+c to switch pieces
 
 left and right for left and right
