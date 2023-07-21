@@ -1,7 +1,7 @@
 # raylib_tetris
 a simple tetris implementation in raylib
 
-### Controls
+### Controls:
 up for spin
 
 space to drop
