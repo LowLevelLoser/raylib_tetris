@@ -13,3 +13,5 @@ r to restart
 c to switch pieces
 
 left and right for left and right
+
+down for down
