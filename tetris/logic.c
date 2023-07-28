@@ -182,8 +182,8 @@ void Drop(game_t *game){
     settled = false;
     while(settled == false){
         MoveDown(game);
+        game->score += 1;
     }
-    game->score += 10;
     snprintf(game->score_c, 50, "score: %d", game->score);
 }
 
@@ -241,14 +241,14 @@ bool EdgeCorrect(game_t *game){
         game->piece_col = game->piece_col - 2;
     }
 
-    for(int i = 0; i < 2; i++){
-        if(Collides(game) == true){
-            game->piece_row--;
-        }
-    }
     if(Collides(game) == true){
-        game->piece_row = game->piece_row + 2;
+        game->piece_row--;
     }
+
+    if(Collides(game) == true){
+        game->piece_row++;
+    }
+
     //reset_overlaps();
     return Collides(game);
 }
@@ -308,7 +308,7 @@ void ClearFullLines(game_t *game){
 
     ClearFullLines(game);
     if (timeToFall > MIN_TIME_TO_FALL){
-        timeToFall = TIME_TO_FALL - game->line_cleared / 300.0;
+        timeToFall = TIME_TO_FALL - game->line_cleared / 500.0;
     }
 }
 
@@ -353,6 +353,7 @@ void ResetPlacement(game_t *game){
     }
     game->tet_rotation = 0;
     game->piece_col = 3;
+    fallTime = 0;
 }
 
 void ResetGame(game_t *game){
