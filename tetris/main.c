@@ -1,4 +1,5 @@
 #include <raylib.h>
+//#include <ncurses.h> or what evs
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>

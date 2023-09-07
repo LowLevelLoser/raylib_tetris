@@ -38,11 +38,11 @@ void RunGame(game_t *game){
     static float right_time = KEY_DELAY;
     static float down_time = KEY_DELAY;
     if(game->state == RUNNING_STATE){
-        fallTime += GetFrameTime();
+        fallTime += GetFrameTime();//raylib exclusive function
         if(game->game_init == false){
             for(int i = 0; i < 3; i++){
-                SetRandomSeed(GetRandomValue(0, 20));
-                game->cached_index[i] = GetRandomValue(0, 6);
+                SetRandomSeed(GetRandomValue(0, 20));//raylib exclusive function
+                game->cached_index[i] = GetRandomValue(0, 6);//raylib exclusive function
             }
             game->game_init = true;
         }
@@ -51,7 +51,7 @@ void RunGame(game_t *game){
             MoveDown(game);
         }
 
-        if(IsKeyDown(KEY_LEFT)){
+        if(IsKeyDown(KEY_LEFT)){//raylib exclusive function
             if(left_time >= KEY_DELAY){
                 MoveLeft(game);
                 left_time = 0;
@@ -60,7 +60,7 @@ void RunGame(game_t *game){
         else {
             left_time = KEY_DELAY;
         }
-        if(IsKeyDown(KEY_RIGHT)){
+        if(IsKeyDown(KEY_RIGHT)){//raylib exclusive function
             if(right_time >= KEY_DELAY){
                 MoveRight(game);
                 right_time = 0;
@@ -69,7 +69,7 @@ void RunGame(game_t *game){
         else {
             right_time = KEY_DELAY;
         }
-        if(IsKeyDown(KEY_DOWN)){
+        if(IsKeyDown(KEY_DOWN)){//raylib exclusive function
             if(down_time >= KEY_DELAY){
                 MoveDown(game);
                 down_time = 0;
@@ -79,7 +79,7 @@ void RunGame(game_t *game){
             down_time = KEY_DELAY;
         }
 
-        switch(GetKeyPressed()){
+        switch(GetKeyPressed()){//raylib exclusive function
              case KEY_UP:
                 Spin(game);
                 break;
@@ -96,15 +96,15 @@ void RunGame(game_t *game){
                 game->state = PAUSE_STATE;
                 break;
         }
-        left_time += GetFrameTime();
-        right_time += GetFrameTime();
-        down_time += GetFrameTime();
+        left_time += GetFrameTime();//raylib exclusive function
+        right_time += GetFrameTime();//raylib exclusive function
+        down_time += GetFrameTime();//raylib exclusive function
 
         game->lowest_piece_row = GetLowestPossibleRow(game);
     }
 
     else{
-        switch(GetKeyPressed()){
+        switch(GetKeyPressed()){//raylib exclusive function
             case KEY_R:
                 ResetGame(game);
                 break;
@@ -328,8 +328,8 @@ int FindFullLine(game_t *game){
 }
 
 void NextPiece(game_t *game){
-    SetRandomSeed(time(NULL));
-    int r = GetRandomValue(0, 6);
+    SetRandomSeed(time(NULL));//raylib exclusive function
+    int r = GetRandomValue(0, 6);//raylib exclusive function 
     game->piece_index = game->cached_index[0];
     if(r == game->cached_index[2]){
         r =(r+1)%7;
