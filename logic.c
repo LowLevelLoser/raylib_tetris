@@ -109,7 +109,9 @@ void RunGame(game_t *game){
                 ResetGame(game);
                 break;
             case KEY_ESCAPE:
-                game->state = RUNNING_STATE;
+                if(game->state  == PAUSE_STATE){
+                    game->state = RUNNING_STATE;
+                }
                 break;
         }
     }
@@ -331,16 +333,11 @@ void NextPiece(game_t *game){
     SetRandomSeed(time(NULL));
     int r = GetRandomValue(0, 6);
     game->piece_index = game->cached_index[0];
-    if(r == game->cached_index[2]){
-        r =(r+1)%7;
+    if(r == game->cached_index[1]){
+        r = (r+1)%7;
     }
-    for(int i = 0; i < 3; i++){
-        if(i == 2)
-            game->cached_index[i] = r;
-        else{
-            game->cached_index[i] = game->cached_index[i+1];
-        }
-    }
+    game->cached_index[1] = r;
+    game->cached_index[0] = game->cached_index[1];
 }
 
 void ResetPlacement(game_t *game){

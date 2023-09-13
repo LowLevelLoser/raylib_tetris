@@ -77,13 +77,11 @@ DrawLine(COLUMNS * CELL_WIDTH, 0, COLUMNS*CELL_WIDTH, GAME_SCREEN_HEIGHT, BLACK)
         }
     }
 
-    for(int i = 0; i < 3; i++){
-        for(int col = 0; col < 4; col++){
-            for(int row = 0; row < 4; row++){
-                if(game->tetrominos[game->cached_index[i]][0][row][col] == FALLING_SQUARE){
-                    DrawRectangle((col*TINY_CELL)+GAME_SCREEN_WIDTH+148, ((row+i*3)*TINY_CELL)+ 110, TINY_CELL, TINY_CELL,
-                            game->piece_color_index[game->cached_index[i]]);
-                }
+    for(int col = 0; col < 4; col++){
+        for(int row = 0; row < 4; row++){
+            if(game->tetrominos[game->cached_index[0]][0][row][col] == FALLING_SQUARE){
+                DrawRectangle((col*TINY_CELL)+GAME_SCREEN_WIDTH+148, ((row)*TINY_CELL)+ 110, TINY_CELL, TINY_CELL,
+                        game->piece_color_index[game->cached_index[0]]);
             }
         }
     }
