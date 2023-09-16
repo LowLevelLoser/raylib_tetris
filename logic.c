@@ -268,7 +268,7 @@ bool Overlaps(game_t *game){
 }
 
 void SettlePiece(game_t *game) {
-    if(game->piece_row <= 0){
+    if(game->piece_row <= 0 && game->piece_col == 3){
         game->state = GAME_OVER_STATE;
     }
     for (int row = 0; row < 4; ++row) {
@@ -354,6 +354,10 @@ void ResetPlacement(game_t *game){
 }
 
 void ResetGame(game_t *game){
+    for(int i = 0; i < 3; i++){
+        SetRandomSeed(GetRandomValue(0, 20));
+        game->cached_index[i] = GetRandomValue(0, 6);
+    }
     memset(game->play_area, EMPTY, sizeof(int)*ROWS*COLUMNS);
     game->state = RUNNING_STATE;
     game->score = 0;
@@ -363,5 +367,6 @@ void ResetGame(game_t *game){
     game->alt_init = false;
     canSwitch = true;
     timeToFall = TIME_TO_FALL;
+    NextPiece(game);
     ResetPlacement(game);
 }
